@@ -1,10 +1,9 @@
 //----------------------------------------------//
 //                                              //
-// ©fieldmask v.1.0.1                           //
+// ©fieldmask v.1.0.0                           //
 // developed by github.com/andremalveira        //
 //                                              //
 //----------------------------------------------//
-
 let $formatMask = {} ;
 const fieldmask = (clientFormatMask) => {
     let allInputs = document.querySelectorAll("input[fieldmask]");
@@ -24,7 +23,6 @@ const fieldmask = (clientFormatMask) => {
         "meter": ["0000", { reverse: true, suffix: "m" }],
         "ip": "000.000.000.000",
         "letter": "",
-        "letters-characters": "",
         "number": "",
         "numbers-characters": "",
     };
@@ -49,7 +47,7 @@ const fieldmask = (clientFormatMask) => {
     document.addEventListener('DOMContentLoaded', function () {
         Array.prototype.forEach.call(allInputs, function (inputs) {
             var codOk = null;
-            const _INPUT_MASK = inputs.attributes["fieldmask"].value;
+            let _INPUT_MASK = inputs.attributes["fieldmask"].value;
     
             let formatMaskValue,
                 isReverse = false,
@@ -89,7 +87,7 @@ const fieldmask = (clientFormatMask) => {
             }
     
             if (codOk) {
-                const setFormatMaskValue = ($formatMask) => {
+                const setFormatMaskValue = ($formatMask, _INPUT_MASK) => {
                     formatMaskValue = (isArray =
                         Array.isArray($formatMask[_INPUT_MASK]) == true)
                         ? $formatMask[_INPUT_MASK][0]
@@ -115,7 +113,7 @@ const fieldmask = (clientFormatMask) => {
                     }
 
                 }
-                setFormatMaskValue($formatMask)
+                setFormatMaskValue($formatMask, _INPUT_MASK)
     
                 if (_INPUT_MASK == "number" || _INPUT_MASK == "letter" || _INPUT_MASK == "numbers-characters" || _INPUT_MASK == "letters-characters") {
                     const onlyNumberCaracters = (value) => {
@@ -230,8 +228,7 @@ const fieldmask = (clientFormatMask) => {
                             inputs.value = inputValueLimit
                         }
               
-                        console.log(inputValueLimit, inputs.value)
-                        setFormatMaskValue($formatMask)
+                        setFormatMaskValue($formatMask, inputs.attributes["fieldmask"].value)
                         if(maxInputLength) inputs.setAttribute("maxlength", maxInputLength);
 
                         setCursorPosition();
@@ -246,9 +243,6 @@ const fieldmask = (clientFormatMask) => {
                         inputs.value = insertMask(inputs.value);
                     }
                 }
-    
-     
-                
             }
         });
     })
