@@ -1,9 +1,11 @@
-//----------------------------------------------//
-//                                              //
-// ©fieldmask v.1.0.0                           //
-// developed by github.com/andremalveira        //
-//                                              //
-//----------------------------------------------//
+//------------------------------------------------//
+//                                                //
+// ©fieldmask v0.1.0                              //
+// @repo: https://github.com/fieldmask/javascript //
+// @author: https://github.com/andremalveira      //
+//                                                //
+//------------------------------------------------//
+
 let $formatMask = {} ;
 const fieldmask = (clientFormatMask) => {
     let allInputs = document.querySelectorAll("input[fieldmask]");
